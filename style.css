@@ -1,0 +1,53 @@
+body {
+    background-color: black;
+}
+.wrapper {
+    width: 316px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    color: lightgray;
+    text-align: center;
+
+}
+.bar{
+    float: left;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 2px;
+    color: black;
+    font-size: 10pt;
+}
+.purple {
+    background-color: rgb(170, 88, 170);
+}
+.orange {
+    background-color: #F9BF3B;
+}
+.green {
+    background-color: rgb(71, 131, 71);
+}
+.red {
+    background-color: rgb(228, 130, 130);
+}
+
+.info {
+    width: 300px;
+    background-color: #000000;
+    margin-top: 0px;
+    padding: 5px;
+    text-align: left;
+}
+.infonumber {
+    font-size: 80pt;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.button {
+    border: black 1px solid;
+    border-radius: 50%;
+    background-color: lightgray;
+    width: 50px;
+    height:50px;
+}
