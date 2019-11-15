@@ -14,12 +14,12 @@
 <form action="result.php" method="post">
 
 <div class="slidecontainer">
-  Your weight:
-  <p><span id="current"></span></p>
-  <input type="range" name="weight" min="1" max="200" value="75" class="slider" id="range"><br>
- Your height: 
- <p><span id="current2"></span></p>
- <input type="range" name="height" min="0" max="220" value="165" class="slider" id="range2"><br><br>
+  Your weight (kg):
+  <p><span id="current">80</span></p>
+  <input type="range" name="weight" min="30" max="130" value="80" class="slider" id="range"><br>
+ Your height (cm): 
+ <p><span id="current2">180</span></p>
+ <input type="range" name="height" min="120" max="240" value="180" class="slider" id="range2"><br><br>
  </div>
 
 <input type="submit" />
