@@ -99,7 +99,9 @@ if (mysqli_num_rows($result) > 0) {
 
 ?>
 <div class="button_container">
-<a href="index.php"><div class="button">Back</div></a>
+    <div class="button">
+<a href="index.php">Back</a>
+</div>
 </div>
 </div>
 <?php
