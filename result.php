@@ -2,11 +2,8 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Your BMI result</title>
 </head>
@@ -51,12 +48,12 @@ $paino = $_POST[weight];
 $pituus = $_POST[height];
 $heighttwice = $pituus * $pituus;
 
- $bmi = $paino / $heighttwice;
+$bmi = $paino / $heighttwice;
 $bmi = $bmi * 10000;
 
 echo "<div class='wrapper'>";
 
-$addtext = "and here is how it compares to five previous results:";
+$addtext = "Here is how it compares to five previous results:";
 
 if ($con->query($sql) === true) {
     echo  "<span class='infonumber'>" . round($bmi, 1) . "</span>";
@@ -64,13 +61,13 @@ if ($con->query($sql) === true) {
     echo "Error: " . $sql . "<br>" . $con->error;
 }
  if($bmi <18.5){
-     echo "<div class='info'> It means you are underweight " . $addtext ."</div>";
+     echo "<div class='info'> It means you are underweight. " . $addtext ."</div>";
  } elseif ($bmi > 18.5 && $bmi < 25){
-     echo "<div class='info'>It means you are normal weight " . $addtext ."</div>";
+     echo "<div class='info'>It means you are normal weight. " . $addtext ."</div>";
  } elseif ($bmi > 25 && $bmi < 35){
-     echo "<div class='info'>It means you are overweight or obese " . $addtext ."</div>";
+     echo "<div class='info'>It means you are overweight or obese. " . $addtext ."</div>";
  }else {
-     echo "<div class='info'>It means you are severly overweight " . $addtext ."</div>";
+     echo "<div class='info'>It means you are severly overweight. " . $addtext ."</div>";
  }
 
 echo "<br>";
@@ -101,7 +98,11 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 ?>
-<a href="index.php"><div class="button">Back</div></a>
+<div class="button_container">
+    <div class="button">
+<a href="index.php">Back</a>
+</div>
+</div>
 </div>
 <?php
 
