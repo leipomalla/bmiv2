@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<a href="index.php">Back to previous page</a>
+
 <?php
 $servername = "localhost";
 $username = "username";
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = test_input($_POST["nickname"]);
     $weight = test_input($_POST["weight"]);
     $height = test_input($_POST["height"]);
-    
+
 }
 
 function test_input($data)
@@ -34,43 +34,76 @@ function test_input($data)
     return $data;
 }
 
-
 // Create connection
 $con = new mysqli($servername, $username, $password, $dbname);
-
 
 if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
 }
 
-$sql="INSERT INTO bmi_results (nickname, weight, height)
+$sql = "INSERT INTO bmi_results (weight, height)
 
 VALUES
 
-('$_POST[nickname]','$_POST[weight]','$_POST[height]')";
+('$_POST[weight]','$_POST[height]')";
 
-echo "paino " . $_POST[weight];
 $paino = $_POST[weight];
-echo "Paino muuttujassa " . $paino;
 $pituus = $_POST[height];
-
-echo "pituus " . $_POST[height];
-
-echo "Pituus muuttujassa " . $pituus;
-
 $heighttwice = $pituus * $pituus;
- 
-echo "pituus potenssiin kaksi" . $heighttwice;
 
-$bmi = $paino / $heighttwice;
+ $bmi = $paino / $heighttwice;
 $bmi = $bmi * 10000;
- 
 
-if ($con->query($sql) === TRUE) {
-    echo "Hello " . $_POST[nickname] . ", your Body mass index is " . $bmi . ".";
+echo "<div class='wrapper'>";
+
+$addtext = "and here is how it compares to five previous results:";
+
+if ($con->query($sql) === true) {
+    echo  "<span class='infonumber'>" . round($bmi, 1) . "</span>";
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error: " . $sql . "<br>" . $con->error;
 }
+ if($bmi <18.5){
+     echo "<div class='info'> It means you are underweight " . $addtext ."</div>";
+ } elseif ($bmi > 18.5 && $bmi < 25){
+     echo "<div class='info'>It means you are normal weight " . $addtext ."</div>";
+ } elseif ($bmi > 25 && $bmi < 35){
+     echo "<div class='info'>It means you are overweight or obese " . $addtext ."</div>";
+ }else {
+     echo "<div class='info'>It means you are severly overweight " . $addtext ."</div>";
+ }
+
+echo "<br>";
+
+$sql = "select * from bmi_results order by PersonID desc limit 5";
+
+$result = mysqli_query($con, $sql);
+
+
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+      
+        $value = $row["weight"]/($row["height"]*$row["height"]);
+        $value = round($value * 10000, 1);
+        if ($value < 18.5) {
+            echo "<div style='width:".$value * 6 . "px' class='bar purple'> " . $value . "</div><br><br>";
+        } elseif ($value > 18.5 && $value < 25) {
+            echo "<div style='width:" . $value * 6 . "px' class='bar green'> " . $value . "</div><br><br>";
+        } elseif ($value > 25 && $value < 35) {
+            echo "<div style='width:" . $value * 6 . "px' class='bar orange'> " . $value . "</div><br><br>";
+        } else {
+            echo "<div style='width:" . $value * 6 . "px' class='bar red'> " . $value . "</div><br><br>";
+        }
+        }
+
+    } else {
+    echo "Error";
+}
+
+?>
+<a href="index.php"><div class="button">Back</div></a>
+</div>
+<?php
 
 $con->close();
 ?>
@@ -79,7 +112,7 @@ $con->close();
 
 </html>
 
- 
 
- 
+
+
 
