@@ -9,20 +9,25 @@
 
 <body>
 <div class="wrapper">
-<h1 >Insert your weight and your height <br>to count your body mass index</h1>
+<div class="info">Count your body mass index</div>
 
 <form action="result.php" method="post">
 
 
-
-Your weight: <input type="text" name="weight" /><br><br>
-
-Your height: <input type="text" name="height" /><br><br>
+<div class="slidecontainer">
+  Your weight:
+  <p><span id="current"></span></p>
+  <input type="range" name="weight" min="1" max="200" value="75" class="slider" id="range">
+ Your height: 
+ <p><span id="current2"></span></p>
+ <input type="range" name="height" min="0" max="220" value="165" class="slider" id="range2"><br><br>
+ </div>
 
 <input type="submit" />
 
 </form>
 </div>
+<script src="main.js"></script>
 
 </body>
 </html>
